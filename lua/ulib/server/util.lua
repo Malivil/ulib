@@ -161,8 +161,8 @@ local function repCvarOnJoin( ply )
 		end
 
 		net.Start( "ULX_CRReplicationReplacement_Part" )
-		net.WriteUInt( sendsize, 16 )
-		net.WriteData( string.sub( compressedcvars, idx, idx + sendsize ) )
+			net.WriteUInt( sendsize, 16 )
+			net.WriteData( string.sub( compressedcvars, idx, idx + sendsize ) )
 		net.Send( ply )
 
 		idx = idx + sendsize
