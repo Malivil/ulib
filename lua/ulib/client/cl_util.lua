@@ -86,18 +86,18 @@ local compressedcvars = ""
 net.Receive("ulib_repWriteCvarBatch_Part", function()
 
 	local len = net.ReadUInt( 16 )
-    compressedcvars = compressedcvars .. net.ReadData( len )
+	compressedcvars = compressedcvars .. net.ReadData( len )
 
 end )
 
 net.Receive("ulib_repWriteCvarBatch_Complete", function()
 
-    local cvars_json = util.Decompress( compressedcvars )
-    local cvars = util.JSONToTable( cvars )
+	local cvars_json = util.Decompress( compressedcvars )
+	local cvars = util.JSONToTable( cvars )
 
-    for sv_cvar, info in pairs( cvars ) do
-        repWriteCvar( sv_cvar, info.c, info.d, info.v )
-    end
+	for sv_cvar, info in pairs( cvars ) do
+		repWriteCvar( sv_cvar, info.c, info.d, info.v )
+	end
 
 end )
 
